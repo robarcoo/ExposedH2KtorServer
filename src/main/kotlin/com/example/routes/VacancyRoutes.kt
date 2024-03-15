@@ -14,9 +14,9 @@ fun Route.vacancyRouting() {
             call.respond(repository.findAllVacancies())
         }
 
-        get ("/vacancy/{id?}") {
+        get ("{id?}") {
             val id = call.parameters["id"] ?: return@get call.respondText("", status = HttpStatusCode.OK)
-            val vacancy = repository.findVacancy(id.toInt()) ?: return@get call.respondText("", status = HttpStatusCode.OK)
+            val vacancy = repository.findFullVacancy(id.toInt()) ?: return@get call.respondText("", status = HttpStatusCode.OK)
             call.respond(vacancy)
         }
 

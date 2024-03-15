@@ -4,7 +4,6 @@ import com.example.dto.CompanyDto
 import com.example.dto.VacancyDto
 import com.example.models.Companies
 import com.example.models.Company
-import com.example.models.Vacancies.companyId
 import com.example.models.Vacancy
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.load
@@ -87,7 +86,7 @@ class CompanyRepository {
                 SizedCollection(
                     company.vacancies + vacancy.let {
                         Vacancy.new {
-                            name = vacancy.profession
+                            name = vacancy.name
                             level = vacancy.level
                             salary = vacancy.salary
                             companyId = EntityID(id, Companies)

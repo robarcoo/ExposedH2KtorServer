@@ -129,7 +129,7 @@ object CompanyVacancyInitializer {
                 company.vacancies.forEach {
                     vacancy ->
                     Vacancies.insert {
-                        it[name] = vacancy.profession
+                        it[name] = vacancy.name
                         it[level] = vacancy.level
                         it[salary] = vacancy.salary
                         it[companyId] = vacancy.companyId

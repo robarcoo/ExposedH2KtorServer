@@ -25,3 +25,4 @@ object Vacancies : IntIdTable()  {
     val description = varchar("description", 256)
 
 }
+
