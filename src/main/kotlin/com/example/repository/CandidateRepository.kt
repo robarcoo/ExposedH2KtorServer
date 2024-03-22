@@ -78,15 +78,15 @@ class CandidateRepository {
     private fun getCandidateDto(it : Candidate) : CandidateDto = CandidateDto(
             it.id.value,
             getAllCandidateInfo(it.id.value),
-            it.education.map { education ->
-                EducationDto(
-                    education.candidateId.value,
-                    education.type,
-                    education.yearStart,
-                    education.yearEnd,
-                    education.description
-                )
-            },
+        it.education.map { education ->
+            EducationDto(
+                education.candidateId.value,
+                education.type,
+                education.yearStart,
+                education.yearEnd,
+                education.description
+            )
+        }.toMutableList(),
             it.jobExperience.map { experience ->
                 JobExperienceDto(
                     experience.candidateId.value,
@@ -95,7 +95,7 @@ class CandidateRepository {
                     experience.companyName,
                     experience.description
                 )
-            },
+            }.toMutableList(),
             it.freeForm
         )
 
@@ -145,7 +145,7 @@ class CandidateRepository {
         }
     }
 
-    private fun createEducation(id: Int, education: List<EducationDto>) {
+    fun createEducation(id: Int, education: List<EducationDto>) {
         transaction {
             education.forEach { education ->
                 Education.new {
@@ -159,7 +159,7 @@ class CandidateRepository {
         }
     }
 
-    private fun createExperience(id: Int, experience: List<JobExperienceDto>) {
+    fun createExperience(id: Int, experience: List<JobExperienceDto>) {
         transaction {
             experience.forEach { experience ->
                 Experience.new {
@@ -176,6 +176,7 @@ class CandidateRepository {
     fun deleteCandidate(id : Int) : Unit = transaction {
         Candidate.findById(id)?.delete()
     }
+
 
     fun updateCandidate(id: Int, newCandidate : CandidateDto) : Unit = transaction {
         Candidate.findById(id)?.let {
@@ -207,6 +208,7 @@ class CandidateRepository {
             it.yearEnd = new.yearEnd
             it.description = new.description
         }
+
     }
 
     private fun updateExperience(id: Int, it: SizedIterable<Experience>, newExperience: List<JobExperienceDto>) : Unit = transaction {

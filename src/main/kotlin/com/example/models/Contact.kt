@@ -10,12 +10,12 @@ import org.jetbrains.exposed.sql.ReferenceOption
 class Contact (id : EntityID<Int>) : IntEntity(id) {
     companion object : IntEntityClass<Contact>(Contacts)
     var candidateId by Contacts.candidateId.uniqueIndex()
-    var phone by Contacts.phone
     var email by Contacts.email
+    var phone by Contacts.phone
 }
 
 object Contacts : IntIdTable() {
     val candidateId  = reference("candidate_id", CandidateInfos.id, onDelete = ReferenceOption.CASCADE)
-    val phone = varchar("phone", 256)
     val email = varchar("email", 256)
+    val phone = varchar("phone", 256)
 }

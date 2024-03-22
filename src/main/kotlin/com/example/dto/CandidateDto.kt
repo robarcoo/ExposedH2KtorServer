@@ -8,9 +8,9 @@ data class CandidateDto(
     val id : Int,
     @SerialName("candidate_info")
     val candidateInfo: CandidateInfoDto,
-    val education: List<EducationDto>,
+    val education: MutableList<EducationDto>,
     @SerialName("job_experience")
-    val jobExperience: List<JobExperienceDto>,
+    val jobExperience: MutableList<JobExperienceDto>,
     @SerialName("free_form")
     val freeForm: String
 )

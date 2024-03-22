@@ -35,7 +35,7 @@ object CandidateInitializer  {
                 "vspetrovich@pochta.ru"),
                 "possible"
                 ),
-            listOf(EducationDto(1,
+            mutableListOf(EducationDto(1,
                 "higher",
                 "2017",
                 "2021",
@@ -52,7 +52,7 @@ object CandidateInitializer  {
                     "2013",
                     "Lyceum 156")
             ),
-            listOf(JobExperienceDto(1,
+            mutableListOf(JobExperienceDto(1,
                 "08.2021",
                 "04.2022",
                 "FinTech",
